@@ -1,5 +1,4 @@
-# commitcoach/validator.py
-
+# backend/validator.py
 from typing import Any, Dict, List
 
 
@@ -7,19 +6,16 @@ def _normalize_commit_score(data: Dict[str, Any]) -> Dict[str, Any]:
     score = data.get("commitScore") or {}
     value_raw = score.get("value", 50)
 
-    # Convertir a int de forma segura
     try:
         value = int(value_raw)
     except (ValueError, TypeError):
         value = 50
 
-    # Clamp 0–100
     if value < 0:
         value = 0
     if value > 100:
         value = 100
 
-    # SIEMPRE recalculamos label según value
     if value >= 80:
         label = "Green"
     elif value >= 50:
@@ -31,18 +27,10 @@ def _normalize_commit_score(data: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def _normalize_str_list(value: Any) -> List[str]:
-    """
-    Asegura que el valor sea una lista de strings.
-    - Si viene un string → [string]
-    - Si viene otra cosa → []
-    - Si hay elementos no-string → se convierten con str().
-    """
     if value is None:
         return []
-
     if isinstance(value, str):
         return [value]
-
     if not isinstance(value, list):
         return []
 
@@ -63,20 +51,16 @@ def _normalize_suggested_message(value: Any) -> str:
     return str(value)
 
 
+def _normalize_risk_level(value: Any) -> str:
+    allowed = {"Low", "Medium", "High"}
+    if isinstance(value, str) and value in allowed:
+        return value
+    # default razonable
+    return "Medium"
+
+
 def validate_response(data: Dict[str, Any]) -> Dict[str, Any]:
-    """
-    Normaliza la respuesta del modelo para que cumpla el schema oficial:
-
-    {
-      "commitScore": { "value": int 0-100, "label": "Green|Yellow|Red" },
-      "flags": [string],
-      "suggestions": [string],
-      "suggestedMessage": string
-    }
-    """
-
     if not isinstance(data, dict):
-        # En caso extremo, devolver defaults hardcodeados
         data = {}
 
     # 1. commitScore
@@ -93,8 +77,8 @@ def validate_response(data: Dict[str, Any]) -> Dict[str, Any]:
         data.get("suggestedMessage", "")
     )
 
-    # Opcional: si quieres, podrías limpiar campos extra aquí
-    # allowed_keys = {"commitScore", "flags", "suggestions", "suggestedMessage"}
-    # data = {k: v for k, v in data.items() if k in allowed_keys}
+    # 5. riesgo
+    data["riskLevel"] = _normalize_risk_level(data.get("riskLevel"))
+    data["riskReasons"] = _normalize_str_list(data.get("riskReasons"))
 
     return data
