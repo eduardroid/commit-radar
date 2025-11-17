@@ -1,4 +1,4 @@
-# commitcoach/llm_client.py
+# backend/llm_client.py
 import os
 from dotenv import load_dotenv
 from openai import OpenAI
@@ -22,11 +22,11 @@ def ask_commitcoach(system_prompt: str, user_input: str) -> str:
                 "strict": True,
                 "schema": {
                     "type": "object",
-                    "additionalProperties": False,  # 👈 obligatorio con strict
+                    "additionalProperties": False,
                     "properties": {
                         "commitScore": {
                             "type": "object",
-                            "additionalProperties": False,  # 👈 idem aquí
+                            "additionalProperties": False,
                             "properties": {
                                 "value": {"type": "integer"},
                                 "label": {
@@ -47,11 +47,11 @@ def ask_commitcoach(system_prompt: str, user_input: str) -> str:
                         "suggestedMessage": {
                             "type": "string"
                         },
-                        "riskLevel": {               # 👈 nuevo (opcional)
+                        "riskLevel": { 
                             "type": "string",
                             "enum": ["Low", "Medium", "High"]
                         },
-                        "riskReasons": {             # 👈 nuevo (opcional)
+                        "riskReasons": {
                             "type": "array",
                             "items": {"type": "string"}
                         }
