@@ -2,6 +2,7 @@
 import json
 from .llm_client import ask_commitcoach
 from .validator import validate_response
+from .post_rules import apply_post_rules
 from pathlib import Path
 
 # Directorio base de este módulo (backend/)
@@ -33,6 +34,10 @@ Recuerda:
 
     try:
         parsed = json.loads(raw)
+        parsed = validate_response(parsed)                 # normaliza schema
+        parsed = apply_post_rules(parsed, diff, message)  # aplica reglas propias
+        parsed = validate_response(parsed)                # recalcula label según value
+
     except json.JSONDecodeError as e:
         # Para debug: ver qué está mandando el modelo cuando falla
         print("===== LLM RAW OUTPUT (INVALID JSON) =====")
@@ -41,4 +46,4 @@ Recuerda:
         # Puedes levantar una excepción más clara
         raise RuntimeError(f"Modelo devolvió JSON inválido: {e}") from e
 
-    return validate_response(parsed)
+    return parsed

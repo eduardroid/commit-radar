@@ -1,4 +1,3 @@
-# cli/cli.py
 import argparse
 import subprocess
 import os
