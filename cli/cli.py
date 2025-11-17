@@ -54,7 +54,17 @@ def print_pretty_report(result: dict, repo_name: str, message: str):
     suggestions = result.get("suggestions", [])
     suggested = result.get("suggestedMessage", "")
 
+    risk_level = result.get("riskLevel", "Medium")
+    risk_reasons = result.get("riskReasons", [])
+
     color, emoji = label_color_and_emoji(label)
+
+    # Mapear riesgo a icono
+    risk_icon = {
+        "High": "🚨",
+        "Medium": "⚠️",
+        "Low": "✅",
+    }.get(risk_level, "⚪")
 
     print(f"{BOLD}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}")
     print(f"{BOLD}          CommitCoach Report          {RESET}")
@@ -63,6 +73,12 @@ def print_pretty_report(result: dict, repo_name: str, message: str):
     print(f"{BOLD}Message:{RESET} {message}")
     print()
     print(f"{BOLD}Score:{RESET} {color}{score} ({label}) {emoji}{RESET}")
+    print(f"{BOLD}Risk:{RESET} {risk_level} {risk_icon}")
+    if risk_reasons:
+        for rr in risk_reasons:
+            print(f"  - {rr}")
+    else:
+        print(f"  {GRAY}- (sin razones específicas){RESET}")
     print()
 
     print(f"{BOLD}Flags:{RESET}")
