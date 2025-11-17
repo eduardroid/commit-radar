@@ -1,0 +1,2 @@
+# commit-coach
+AI startup
