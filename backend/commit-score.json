@@ -1,0 +1,44 @@
+{
+  "commit_score": {
+    "overall": 0,
+    "categories": {
+      "size": {
+        "score": 0,
+        "details": "Number of lines added/removed and file count",
+        "penalties": []
+      },
+      "cohesion": {
+        "score": 0,
+        "details": "If the commit mixes features, fixes, refactors, cleanups",
+        "penalties": []
+      },
+      "risk": {
+        "score": 0,
+        "details": "Secrets, dangerous patterns, missing tests, large changes",
+        "penalties": []
+      },
+      "clarity": {
+        "score": 0,
+        "details": "Clarity of the commit message and description",
+        "bonuses": []
+      },
+      "standards": {
+        "score": 0,
+        "details": "Whether the commit follows Conventional Commits or team rules",
+        "penalties": []
+      }
+    },
+    "recommendations": [
+      "Split commit into multiple logical chunks",
+      "Add tests for the modified function",
+      "Avoid committing debug logs"
+    ],
+    "suggested_message": "",
+    "flags": {
+      "has_secrets": false,
+      "too_large": false,
+      "mixed_purpose": false,
+      "missing_tests": false
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "diff": "diff --git a/file.py b/file.py\n...",
+  "message": "feat: add total calculation",
+  "repo_name": "mi-repo-demo"
+}

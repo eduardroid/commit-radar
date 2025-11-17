@@ -1,0 +1,15 @@
+VS Code Extension
+     │
+     ├── capture staged diff
+     │
+     ▼
+CommitCoach API (FastAPI)
+     │
+     ├── LLM analysis (diff → JSON)
+     │
+     ▼
+Extensión renderiza:
+- CommitScore
+- Suggestions
+- Flags
+- Message final

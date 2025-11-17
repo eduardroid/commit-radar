@@ -1,0 +1,11 @@
+commitcoach/
+  ├── package.json
+  ├── src/
+  │    ├── extension.ts
+  │    ├── panel.ts
+  │    └── api.ts
+  ├── media/
+  │    ├── styles.css
+  │    ├── panel.html
+  │    └── logo.png
+  └── README.md
