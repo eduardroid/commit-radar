@@ -46,14 +46,6 @@ def ask_commitcoach(system_prompt: str, user_input: str) -> str:
                         },
                         "suggestedMessage": {
                             "type": "string"
-                        },
-                        "riskLevel": { 
-                            "type": "string",
-                            "enum": ["Low", "Medium", "High"]
-                        },
-                        "riskReasons": {
-                            "type": "array",
-                            "items": {"type": "string"}
                         }
                     },
                     "required": [
