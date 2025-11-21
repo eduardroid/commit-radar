@@ -1,6 +1,6 @@
 {
   "name": "commit-radar",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "AI-powered Semantic Firewall for your git commits. Detects blast radius and logic errors.",
   "bin": {
     "commit-radar": "./dist/index.js"
