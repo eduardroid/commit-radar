@@ -28,7 +28,7 @@ If it detects that your change breaks the logic of a dependent file, **it blocks
 Install it as a dev dependency. The setup script will automatically configure Husky hooks for you.
 
 ```bash
-npm install -D commit-radar
+npm install -D commit-radar husky
 ```
 
 ### 2. Configure API Key
