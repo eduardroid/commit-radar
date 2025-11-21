@@ -1,0 +1,27 @@
+name: 'CommitRadar AI Guard'
+description: 'Semantic Firewall for PRs. Blocks logic bugs and blast-radius risks using AI before merge.'
+author: 'Eduardo (CommitRadar Founder)'
+
+# Branding for Marketplace
+branding:
+  icon: 'shield'
+  color: 'red'
+
+# User Setup
+inputs:
+  openai_api_key:
+    description: 'Your OpenAI API Key (required for cloud inference)'
+    required: true
+  openai_model:
+    description: 'LLM Model to use'
+    required: false
+    default: 'gpt-4o-mini'
+  openai_base_url:
+    description: 'Custom endpoint (for Enterprise proxies or LocalAI)'
+    required: false
+    default: 'https://api.openai.com/v1'
+
+# How to execute
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
