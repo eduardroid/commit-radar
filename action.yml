@@ -20,6 +20,10 @@ inputs:
     description: 'Custom endpoint (for Enterprise proxies or LocalAI)'
     required: false
     default: 'https://api.openai.com/v1'
+  github_token:
+    description: 'GITHUB_TOKEN to post comments on PRs'
+    required: false
+    default: '${{ github.token }}'
 
 # How to execute
 runs:
