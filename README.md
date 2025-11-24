@@ -95,6 +95,27 @@ To prevent high API bills and slow commits, CommitRadar includes built-in **Circ
 
 ---
 
+## 🛠️ Configuration (Optional)
+
+You can customize CommitRadar by creating a `commit-radar.config.js` file in your project root.
+
+```javascript
+module.exports = {
+  // Ignore legacy code, tests, or build artifacts
+  exclude: [
+    '**/*.test.js',
+    'src/legacy/**',
+    'build/**'
+  ],
+  thresholds: {
+    maxFiles: 20,   // Skip analysis if PR has >20 files
+    maxLines: 1000  // Skip files larger than 1000 lines
+  },
+  model: 'gpt-4o'   // Force a smarter model for Enterprise use
+};
+
+---
+
 ## 📝 License
 
 Copyright © 2025. All rights reserved.

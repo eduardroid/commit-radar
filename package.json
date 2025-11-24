@@ -1,6 +1,6 @@
 {
   "name": "commit-radar",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "AI-powered Semantic Firewall for your git commits. Detects blast radius and logic errors.",
   "bin": {
     "commit-radar": "./dist/index.js"
@@ -19,6 +19,7 @@
     "@actions/github": "^6.0.1",
     "dotenv": "^16.4.5",
     "madge": "^6.1.0",
+    "minimatch": "^10.1.1",
     "openai": "^4.28.0"
   },
   "devDependencies": {
